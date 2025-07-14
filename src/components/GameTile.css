@@ -1,0 +1,476 @@
+.memory-tile {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  touch-action: manipulation;
+  user-select: none;
+  will-change: transform;
+  min-height: 70px;
+  min-width: 70px;
+  max-height: 140px;
+  max-width: 140px;
+}
+
+@media (min-width: 640px) {
+  .memory-tile {
+    border-radius: 0.75rem;
+    border-width: 2px;
+    min-height: 90px;
+    min-width: 90px;
+    max-height: 160px;
+    max-width: 160px;
+  }
+}
+
+@media (min-width: 768px) {
+  .memory-tile {
+    min-height: 110px;
+    min-width: 110px;
+    max-height: 180px;
+    max-width: 180px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .memory-tile {
+    min-height: 130px;
+    min-width: 130px;
+    max-height: 200px;
+    max-width: 200px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .memory-tile {
+    min-height: 150px;
+    min-width: 150px;
+    max-height: 220px;
+    max-width: 220px;
+  }
+}
+
+.memory-tile.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.memory-tile:not(.is-disabled) {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 640px) {
+  .memory-tile:not(.is-disabled) {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.tile-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.7s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+@media (min-width: 640px) {
+  .tile-face {
+    border-radius: 0.75rem;
+  }
+}
+
+.tile-back {
+  transform: rotateY(0deg);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tile-front {
+  transform: rotateY(-180deg);
+  opacity: 0;
+  transform: scale(0.75);
+  padding: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .tile-front {
+    padding: 0.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .tile-front {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tile-front {
+    padding: 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .tile-front {
+    padding: 1.5rem;
+  }
+}
+
+.memory-tile.is-flipped .tile-back, 
+.memory-tile.is-matched .tile-back {
+  transform: rotateY(180deg);
+  opacity: 0;
+  transform: scale(0.75);
+}
+
+.memory-tile.is-flipped .tile-front, 
+.memory-tile.is-matched .tile-front {
+  transform: rotateY(0deg);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.back-icon-wrapper {
+  position: relative;
+}
+
+.back-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-image: linear-gradient(to right, #8b5cf6, #a855f7, #d946ef);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s;
+}
+
+@media (min-width: 640px) {
+  .back-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+@media (min-width: 768px) {
+  .back-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .back-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .back-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.back-icon.with-glow {
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+@media (min-width: 640px) {
+  .back-icon.with-glow {
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+  }
+}
+
+.back-icon-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: white;
+  border-radius: 9999px;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 640px) {
+  .back-icon-dot {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .back-icon-dot {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .back-icon-dot {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .back-icon-dot {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.back-icon-ring {
+  position: absolute;
+  inset: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (min-width: 640px) {
+  .back-icon-ring {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .back-icon-ring {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .back-icon-ring {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .back-icon-ring {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.back-icon-glow {
+  position: absolute;
+  inset: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-image: linear-gradient(to right, rgba(167, 139, 250, 0.1), rgba(244, 114, 182, 0.1));
+  filter: blur(4px);
+}
+
+@media (min-width: 640px) {
+  .back-icon-glow {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .back-icon-glow {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .back-icon-glow {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .back-icon-glow {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.front-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.waveform-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 0.25rem;
+  min-height: 30px;
+}
+
+@media (min-width: 640px) {
+  .waveform-wrapper {
+    margin-bottom: 0.5rem;
+    min-height: 35px;
+  }
+}
+
+@media (min-width: 768px) {
+  .waveform-wrapper {
+    margin-bottom: 0.75rem;
+    min-height: 45px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .waveform-wrapper {
+    margin-bottom: 1rem;
+    min-height: 55px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .waveform-wrapper {
+    margin-bottom: 1.25rem;
+    min-height: 65px;
+  }
+}
+
+.waveform-name {
+  font-size: 0.5rem;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.125rem 0.25rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .waveform-name {
+    font-size: 0.625rem;
+    padding: 0.1875rem 0.375rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .waveform-name {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .waveform-name {
+    font-size: 0.875rem;
+    padding: 0.3125rem 0.625rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .waveform-name {
+    font-size: 1rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+
+.matched-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(to bottom right, rgba(52, 211, 153, 0.2), rgba(45, 212, 191, 0.2));
+  animation: pulseGlow 2s infinite alternate;
+  pointer-events: none;
+}
+
+@media (min-width: 640px) {
+  .matched-glow {
+    border-radius: 0.75rem;
+  }
+}
+
+/* Waveform SVG Styles */
+.waveform-svg {
+  filter: drop-shadow(0 2px 4px -1px rgba(0, 0, 0, 0.1));
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 60px;
+  min-height: 30px;
+}
+
+@media (min-width: 640px) {
+  .waveform-svg {
+    min-width: 70px;
+    min-height: 35px;
+  }
+}
+
+@media (min-width: 768px) {
+  .waveform-svg {
+    min-width: 90px;
+    min-height: 45px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .waveform-svg {
+    min-width: 110px;
+    min-height: 55px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .waveform-svg {
+    min-width: 130px;
+    min-height: 65px;
+  }
+}
+
+.waveform-path {
+  transition: all 0.5s;
+}
+
+.waveform-glow-path {
+  filter: blur(4px);
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulseGlow {
+  from {
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
+  }
+}
