@@ -34,7 +34,7 @@ This project was developed with assistance from AI, particularly for generating 
     ```
 2.  Navigate to the project directory:
     ```bash
-    cd EchoMatch
+    cd Echo-Match
     ```
 3.  Install the dependencies:
     ```bash
